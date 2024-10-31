@@ -4,13 +4,13 @@ import random
 import requests
 import pygame
 ###
-'''
-small read me section here, use pip install pygame and pip install elevenlabs in cmd to get the packages for the TTS. 
-'''
+# '''
+# small read me section here, use pip install pygame and pip install elevenlabs in cmd to get the packages for the TTS. 
+# '''
 ###
 # Initialize OpenAI and ElevenLabs API keys
 openai.api_key = ""  # Replace with your OpenAI API key
-api_key = ''  # Replace with your ElevenLabs API key
+api_key = ""  # Replace with your ElevenLabs API key
 # Conversation history for OpenAI API
 conversation_history = [
     {
@@ -51,6 +51,9 @@ def generate_speech(text, voice_id="Dz5ybcCvrahl9DAD0yAG", output_filename="outp
         pygame.mixer.init()  # Initialize the mixer
         pygame.mixer.music.load(output_filename)  # Load the mp3 file
         pygame.mixer.music.play()  # Play the audio
+        while pygame.mixer.music.get_busy():  # Wait until the sound is finished playing
+            pygame.time.Clock().tick(10)  # Add a small delay to prevent high CPU usage
+        pygame.mixer.quit()  # Clean up the mixer after playing
     else:
         print("Error:", response.status_code, response.text)
 
