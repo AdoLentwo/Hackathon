@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter as tk
 import openai
 import random
 
@@ -96,3 +97,4 @@ ghost_response_label.pack(pady=20)
 flicker_background()
 
 # Run the GUI event loop
+window.mainloop()
